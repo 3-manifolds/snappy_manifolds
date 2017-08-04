@@ -68,8 +68,8 @@ class Release(Command):
     def run(self):
         pythons = os.environ.get('RELEASE_PYTHONS', sys.executable).split(',')
         check_call([pythons[0], 'setup.py', 'clean'])
-        check_call([pythons[0], 'setup.py', 'sdist'])
         check_call([pythons[0], 'setup.py', 'bdist_wheel', '--universal'])
+        check_call([pythons[0], 'setup.py', 'sdist'])
         if self.install:
             for python in pythons:
                 check_call([python, 'setup.py', 'pip_install', '--no-build-wheel'])
@@ -123,7 +123,7 @@ setup(
     description = 'Database of snappy manifolds',
     long_description = long_description,
     url = 'https://bitbucket.org/t3m/snappy_manifolds',
-    author = 'Marc Culler and Nathan M. Dunfield Mattias Goerner and Malik Obeidin',
+    author = 'Marc Culler and Nathan M. Dunfield and Mattias Goerner and Malik Obeidin',
     author_email = 'snappy-help@computop.org, mobeidin@illiois.edu',
     license='GPLv2+',
     classifiers = [

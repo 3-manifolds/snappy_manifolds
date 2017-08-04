@@ -45,14 +45,16 @@ class BuildPy(build_py):
         os.chdir('manifold_src')        
         csv_source_files = glob.glob(
             os.path.join('original_manifold_sources', '*.csv'))
-        newest_csv = max(os.path.getmtime(file) for file in csv_source_files)
-        if not all(os.path.exists(file) for file in sqlite_files):
-            oldest_sqlite = 0
-        else:
-            oldest_sqlite = min(os.path.getmtime(file) for file in sqlite_files)
-        if self.force or oldest_sqlite < newest_csv:
-            print('Rebuilding sqlite databases from csv sources...')
-            check_call([sys.executable, 'make_sqlite_db.py'])
+        # When there are no csv files, we are in an sdist tarball
+        if len(csv_source_files) != 0:
+            newest_csv = max(os.path.getmtime(file) for file in csv_source_files)
+            if not all(os.path.exists(file) for file in sqlite_files):
+                oldest_sqlite = 0
+            else:
+                oldest_sqlite = min(os.path.getmtime(file) for file in sqlite_files)
+            if self.force or oldest_sqlite < newest_csv:
+                print('Rebuilding sqlite databases from csv sources...')
+                check_call([sys.executable, 'make_sqlite_db.py'])
         os.chdir('..')
         build_py.run(self)
 

@@ -1,0 +1,3 @@
+include manifold_src/manifolds.sqlite
+include manifold_src/more_manifolds.sqlite
+include manifold_src/platonic_manifolds.sqlite

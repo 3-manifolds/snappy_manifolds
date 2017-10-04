@@ -10,6 +10,7 @@ from the Manifold censuses in csv format to build sqlite
 names the columns.
 """
 
+csv_dir = 'original_manifold_sources'
 
 schema_types = {
     'id': 'int',
@@ -207,10 +208,11 @@ def make_table(connection, tablecsv, sub_dir = '', name_index=True):
     """
     Given a csv of manifolds data and a connection to a sqlite database,
     insert the data into a new table. If the csv file is in a subdirectory
-    of original_manifold_sources/, it is given by sub_dir.
+    of the csv directory csv_dir, it is given by sub_dir.
     """
     tablename = tablecsv.split('.')[0]
-    csv = open('original_manifold_sources/'+ sub_dir + tablecsv,'r')
+    csv_path = os.path.join(csv_dir, sub_dir, tablecsv)
+    csv = open(csv_path, 'r')
     #first line is column names
     columns = csv.readline().strip().split(',')
     schema ="CREATE TABLE %s (id integer primary key"%tablename
@@ -389,72 +391,87 @@ def make_nono_closed(connection):
         insert_closed_manifold(connection, table, M)
     connection.commit()
 
+def is_stale(dbfile, sourceinfo):
+    if not os.path.exists(dbfile):
+        return True
+    dbmodtime = os.path.getmtime(dbfile)
+    for csv in sourceinfo:
+        csv_path = os.path.join(csv_dir, sourceinfo[csv].get('sub_dir', ''), csv)
+        if os.path.getmtime(csv_path) > dbmodtime:
+            return True
+    return False
+    
 if __name__ == '__main__':
-    dbfile = 'manifolds.sqlite'
-    if os.path.exists(dbfile):
-        os.remove(dbfile)
-    connection = sqlite3.connect(dbfile)
+    manifold_db = 'manifolds.sqlite'
+    manifold_data = {
+        'orientable_cusped_census.csv': {},
+        'nonorientable_cusped_census.csv': {},
+        'orientable_closed_census.csv': {'name_index': False},
+        'nonorientable_closed_census.csv': {'name_index': False},
+        'census_knots.csv': {},
+        'link_exteriors.csv': {}
+    }
+    if is_stale(manifold_db, manifold_data):
+        if os.path.exists(manifold_db):
+            os.remove(manifold_db)
+        with sqlite3.connect(manifold_db) as connection:
+            for csv in manifold_data:
+                make_table(connection, csv, **manifold_data[csv])
+            # There are two reasons for using views.  One is that views
+            # are read-only, so we have less chance of deleting our data.
+            # The second is that they allow joins to be treated as if they
+            # were tables, which we need for the closed census.
+            connection.execute("""create view orientable_cusped_view as
+            select * from orientable_cusped_census""")
+            connection.execute("""create view link_exteriors_view as
+            select * from link_exteriors""")
+            connection.execute("""create view census_knots_view as
+            select * from census_knots""")
+            connection.execute("""create view nonorientable_cusped_view as
+            select * from nonorientable_cusped_census""")
+            connection.execute("""create view orientable_closed_view as
+            select a.id, b.name, a.m, a.l, a.betti, a.torsion, a.volume,
+            a.chernsimons, a.hash, b.triangulation
+            from orientable_closed_census a
+            left join orientable_cusped_census b
+            on a.cusped=b.name""")
+            connection.execute("""create view nonorientable_closed_view as
+            select a.id, b.name, a.m, a.l, a.betti, a.torsion, a.volume,
+            a.hash, b.triangulation
+            from nonorientable_closed_census a
+            left join nonorientable_cusped_census b
+            on a.cusped=b.name""")
 
-    make_table(connection,'orientable_cusped_census.csv')
-    make_table(connection,'nonorientable_cusped_census.csv')
-    make_table(connection,'orientable_closed_census.csv', name_index=False)
-    make_table(connection,'nonorientable_closed_census.csv', name_index=False)
-    make_table(connection,'census_knots.csv')
-    make_table(connection,'link_exteriors.csv')
-        
-    # There are two reasons for using views.  One is that views
-    # are read-only, so we have less chance of deleting our data.
-    # The second is that they allow joins to be treated as if they
-    # were tables, which we need for the closed census.
-    connection.execute("""create view orientable_cusped_view as
-    select * from orientable_cusped_census""")
-    connection.execute("""create view link_exteriors_view as
-    select * from link_exteriors""")
-    connection.execute("""create view census_knots_view as
-    select * from census_knots""")
-    connection.execute("""create view nonorientable_cusped_view as
-    select * from nonorientable_cusped_census""")
-    connection.execute("""create view orientable_closed_view as
-    select a.id, b.name, a.m, a.l, a.betti, a.torsion, a.volume,
-    a.chernsimons, a.hash, b.triangulation
-    from orientable_closed_census a
-    left join orientable_cusped_census b
-    on a.cusped=b.name""")
-    connection.execute("""create view nonorientable_closed_view as
-    select a.id, b.name, a.m, a.l, a.betti, a.torsion, a.volume,
-    a.hash, b.triangulation
-    from nonorientable_closed_census a
-    left join nonorientable_cusped_census b
-    on a.cusped=b.name""")
-    connection.close()
+    more_db = 'more_manifolds.sqlite'
+    more_data = {'HT_links.csv': {}}
+    if is_stale(more_db, more_data):
+        if os.path.exists(more_db):
+            os.remove(more_db)
+        with sqlite3.connect(more_db) as connection:
+            for csv in more_data:
+                make_table(connection, csv, **more_data[csv])
+            connection.execute(""" create view HT_links_view as select * from HT_links""")
 
-    dbfile2 = 'more_manifolds.sqlite'
-    if os.path.exists(dbfile2):
-        os.remove(dbfile2)
-    connection2 = sqlite3.connect(dbfile2)
-
-    make_table(connection2,'HT_links.csv')
-    connection2.execute(""" create view HT_links_view as select * from HT_links""")
-    connection2.close()
-
-    dbfile3 = 'platonic_manifolds.sqlite'
-    if os.path.exists(dbfile3):
-        os.remove(dbfile3)
-    connection3 = sqlite3.connect(dbfile3)
-    platonic_csvs = ['cubical_nonorientable_closed_census.csv',
-                     'dodecahedral_nonorientable_cusped_census.csv',
-                     'octahedral_nonorientable_cusped_census.csv',
-                     'cubical_nonorientable_cusped_census.csv',
-                     'dodecahedral_orientable_closed_census.csv',
-                     'octahedral_orientable_cusped_census.csv',
-                     'cubical_orientable_closed_census.csv',
-                     'dodecahedral_orientable_cusped_census.csv',
-                     'cubical_orientable_cusped_census.csv',
-                     'icosahedral_nonorientable_closed_census.csv',
-                     'tetrahedral_nonorientable_cusped_census.csv',
-                     'dodecahedral_nonorientable_closed_census.csv',
-                     'icosahedral_orientable_closed_census.csv',
-                     'tetrahedral_orientable_cusped_census.csv']
-    for csv in platonic_csvs:
-        make_table(connection3,csv, sub_dir = 'platonic_manifolds/')
-    connection3.close()
+    platonic_db = 'platonic_manifolds.sqlite'
+    platonic_data = {
+        'cubical_nonorientable_closed_census.csv': {'sub_dir': 'platonic_manifolds/'},
+        'dodecahedral_nonorientable_cusped_census.csv': {'sub_dir': 'platonic_manifolds/'},
+        'octahedral_nonorientable_cusped_census.csv': {'sub_dir': 'platonic_manifolds/'},
+        'cubical_nonorientable_cusped_census.csv': {'sub_dir': 'platonic_manifolds/'},
+        'dodecahedral_orientable_closed_census.csv': {'sub_dir': 'platonic_manifolds/'},
+        'octahedral_orientable_cusped_census.csv': {'sub_dir': 'platonic_manifolds/'},
+        'cubical_orientable_closed_census.csv': {'sub_dir': 'platonic_manifolds/'},
+        'dodecahedral_orientable_cusped_census.csv': {'sub_dir': 'platonic_manifolds/'},
+        'cubical_orientable_cusped_census.csv': {'sub_dir': 'platonic_manifolds/'},
+        'icosahedral_nonorientable_closed_census.csv': {'sub_dir': 'platonic_manifolds/'},
+        'tetrahedral_nonorientable_cusped_census.csv': {'sub_dir': 'platonic_manifolds/'},
+        'dodecahedral_nonorientable_closed_census.csv': {'sub_dir': 'platonic_manifolds/'},
+        'icosahedral_orientable_closed_census.csv': {'sub_dir': 'platonic_manifolds/'},
+        'tetrahedral_orientable_cusped_census.csv': {'sub_dir': 'platonic_manifolds/'},
+    }
+    if is_stale(platonic_db, platonic_data):
+        if os.path.exists(platonic_db):
+            os.remove(platonic_db)
+        with sqlite3.connect(platonic_db) as connection:
+            for csv in platonic_data:
+                make_table(connection, csv, **platonic_data[csv])

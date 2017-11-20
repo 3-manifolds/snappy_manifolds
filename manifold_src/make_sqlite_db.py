@@ -248,11 +248,15 @@ def make_table(connection, tablecsv, sub_dir = '', name_index=True):
         connection.execute(insert_query%tuple(data_list))
     csv.close()
 
-    # This index makes it fast to join this table on its name column.
-    # Without the index, the join is very slow.
+    # We need to index columns that will be queried frequently for speed.
+
+    indices = ['hash', 'volume']
     if name_index:
+        indices += ['name']
+    for column in indices:
         connection.execute(
-            'create index %s_by_name on %s (name)'%(tablename,tablename))
+            'create index %s_by_%s on %s (%s)'%
+            (tablename, column, tablename, column))
     connection.commit()
 
 def extract_data_from_line(s):

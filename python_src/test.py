@@ -6,7 +6,7 @@ doctests are run by snappy.
 >>> len(Rolfsen), len(HT)
 (1215, 180509)
 >>> str(HT['L12n345'])
-'lbbjceGkjHILFadb'
+'lbbjceGkjHILFadb.010001100011'
 """
 
 from .database import get_DT_tables

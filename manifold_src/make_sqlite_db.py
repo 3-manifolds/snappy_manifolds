@@ -57,6 +57,7 @@ CREATE TABLE %s (
  cusped text,
  m int,
  l int,
+ cusps int,
  betti int,
  torsion text,
  volume real,
@@ -66,8 +67,8 @@ CREATE TABLE %s (
 """
 
 closed_insert_query = """insert into %s
-(cusped, m, l, betti, torsion, volume, chernsimons, hash)
-values ('%s', %d, %d, %d, '%s', %s, %s, '%s')"""
+(cusped, m, l, cusps, betti, torsion, volume, chernsimons, hash)
+values ('%s', %d, %d, %d, %d, '%s', %s, %s, '%s')"""
 
 nono_cusped_schema ="""
 CREATE TABLE %s (
@@ -92,6 +93,7 @@ CREATE TABLE %s (
  cusped text,
  m int,
  l int,
+ cusps int,
  betti int,
  torsion text,
  volume real,
@@ -100,8 +102,8 @@ CREATE TABLE %s (
 """
 
 nono_closed_insert_query = """insert into %s
-(cusped, m, l, betti, torsion, volume, hash)
-values ('%s', %d, %d, %d, '%s', %s, '%s')"""
+(cusped, m, l, betti, cusps, torsion, volume, hash)
+values ('%s', %d, %d, %d, %d, '%s', %s, '%s')"""
 
 USE_COBS = 1 << 7
 USE_STRING = 1 << 6
@@ -348,8 +350,6 @@ def make_nonorientable_cusped(connection, tablecsv):
 
 
 def make_links(connection, tablecsv):
-    
-    
     for n in range(1, 6):
         for M in LinkExteriors(n):
             M.set_name(M.name().split('(')[0])
@@ -434,13 +434,13 @@ if __name__ == '__main__':
             connection.execute("""create view nonorientable_cusped_view as
             select * from nonorientable_cusped_census""")
             connection.execute("""create view orientable_closed_view as
-            select a.id, b.name, a.m, a.l, a.betti, a.torsion, a.volume,
+            select a.id, b.name, a.m, a.l, a.cusps, a.betti, a.torsion, a.volume,
             a.chernsimons, a.hash, b.triangulation
             from orientable_closed_census a
             left join orientable_cusped_census b
             on a.cusped=b.name""")
             connection.execute("""create view nonorientable_closed_view as
-            select a.id, b.name, a.m, a.l, a.betti, a.torsion, a.volume,
+            select a.id, b.name, a.m, a.l, a.cusps, a.betti, a.torsion, a.volume,
             a.hash, b.triangulation
             from nonorientable_closed_census a
             left join nonorientable_cusped_census b

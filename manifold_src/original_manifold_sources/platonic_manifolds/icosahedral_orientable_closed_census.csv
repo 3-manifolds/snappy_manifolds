@@ -1,30 +1,30 @@
-id,name,cusps,betti,tets,solids,hash,volume,triangulation
-1,oicocld01_00000,1,0,7,1,8d2621b40d38a5919bf11726a0dad541,4.6860342738,hLLLQkbcgegffgtsplqkjr_DcCb(1,0)
-2,oicocld01_00001,1,0,8,1,d9222a99d643dfb6f14e292da47216b4,4.6860342738,iLLAzQcaddefhghhnpupjxqcj_cBdC(1,0)
-3,oicocld01_00002,1,0,10,1,f6c0d12f8d5aa1b84b8b95e8aa2c0900,4.6860342738,kLLLLQAkcbefhiiihjjpjqgcwoksqw_BcBb(1,0)
-4,oicocld01_00003,1,0,7,1,d9222a99d643dfb6f14e292da47216b4,4.6860342738,hLLLQkcdfeggfgprxmpgjf_dced(1,0)
-5,oicocld01_00004,1,0,9,1,55122702757a5332601b1b2779e87775,4.6860342738,jLLzPPQcdeghighiipgausprgip_cBbB(1,0)
-6,oicocld01_00005,1,0,8,1,b24d5d203a8f146ccfc6cda7b9da0708,4.6860342738,iLvAMQcadfegghghjpijjravn_CdBc(1,0)
-7,oicocld02_00000,1,0,14,2,e56abc2852c66064eabaa883a6899334,9.3720685476,oLvAAvvQQQcbeffglimnnkmnlmedmaxpeconnbvbb_CbBb(1,0)
-8,oicocld02_00001,1,0,15,2,1d5e3846c8f9c38ee13153e55f4af242,9.3720685476,pLvvMLMMQPQbfhjlhknmjnolonomaujtoedxftkcscr_bCbB(1,0)
-9,oicocld02_00002,1,0,13,2,441643d0e6ee494dda8bc04f5d53baf1,9.3720685476,nvLMvMwQQkedfhgkmiljmklmgghqgwafqnqfqk_CbDc(1,0)
-10,oicocld02_00003,1,0,14,2,dd823cd993f1d40af7c9e05d5f2470a1,9.3720685476,ovLAvLzQQQcedfllmnkjjmlnnmwraokltfkoaotmm_cBba(1,0)
-11,oicocld02_00004,1,0,13,2,2171fe0197a469e9642c194a8ef02421,9.3720685476,nvLLvzQQQkdgfihlkmjjklmmslmoovbofbosbs_BBCB(1,0)
-12,oicocld03_00000,1,0,17,3,bdfb359f481f0bda17b0ff085a57626d,14.058102821,rvLLLzLPPQPQceffhimnjloopoqnpqqsllmwaijbiideacowv_CdDf(1,0)
-13,oicocld03_00001,1,0,19,3,f638b36481dfe2992e1af6827a5b401b,14.0581028214,tLvLvAAQwLMMQkbfgkjhimjmnonqrsqrsslxgjssctotssovlxvixs_DbFc(1,0)
-14,oicocld03_00002,1,0,22,3,c047ef8fd965300a445d52632922a902,14.0581028214,wLvvLvMwMMAPAQQkafhjopkqplmutstqrqvsvuvjrbaeelmjrcpidinbrhmkjg_bbab(1,0)
-15,oicocld04_00000,1,0,25,4,7f1c6c8ea8f8f495eac8603a1a5e5f2a,18.744137095,zLLAvPwvwzQLPMLQQkbdedhgilpsonsruuvttyuwyxxytrashshhhjvjwkahaqiasoknoo_CBBB(1,0)
-16,oicocld04_00001,1,0,27,4,2697aa34afbeed5e7d6e41b693d2a01e,18.7441370952,BLLLLAwQLvQLvLLQQPQacfghijjkjlopqsuzuuvywxzAAzAjkgfautvrfjokiugajrfqiqbxmsm_cBdB(1,0)
-17,oicocld04_00002,1,0,24,4,a2bdea37b199fee44c5ecd9823199448,18.7441370952,yLLLvwwPvAAPAPPQQbcgikljrrmqtutupqssxwwwvxtsmjxeenbfvapuafsuubsnsnk_dBcB(1,0)
-18,oicocld04_00003,1,0,25,4,978d0969905ba6791a259257ccccb947,18.744137095,zLLLvvLLLAQPPQMzQkbcgnkkqmptsnuuuvprrtwwxyyytsmxeetgkarcaxaawffitofieh_bCbB(1,0)
-19,oicocld04_00004,1,1,24,4,ccf8c2f08af9a349f96e8203121c3df6,18.7441370952,yLvAvvvwQPvMQMQQQadfmjonsspusqqupvwxutvxwxjaqqnvvqiopxiqpnpnscnksfw_dCbB(1,0)
-20,oicocld04_00005,1,1,25,4,8ecbd4f96a591f5bd29a1ba47a9e1f58,18.744137095,zLvvAvwMwQzzQAMMQkbhiljkpokomptrsqrsuwxywxyyhhauguaxahgjashbgugvaeneto_dced(1,0)
-21,oicocld04_00006,1,0,27,4,ccf15f056fbf0c417f4af655c585b627,18.744137095,BLLLvLvvwPQMzAAPQQQbcgjkpspuurrwvtqxAtyvwyzzzAAtsmamwcwjcrbpajcatctdxekwkwj_BBBa(1,0)
-22,oicocld04_00007,1,0,24,4,9765347774341c06e56e56df0ec9ece4,18.744137095,yLvAvvPMzMzAPwQQQadfllmkopmptqqutxuwtxvvwxjaqldqciafahapfvhrhnlfcxb_CdDf(1,0)
-23,oicocld04_00008,1,0,25,4,752eb230ffa49ef0f3459f44222a3d12,18.7441370952,zvLvLvAvvLQPQPQQQkefhisrotnwqpwrvxyxywuvtuxywdgftpdmsqxtaiorrkfjfvvfkj_DbFc(1,0)
-24,oicocld04_00009,1,1,27,4,c5f8f2ce79dcd0f7cff79d799d455b29,18.744137095,BLvLvQvwvwvPQMQPQQQcekjhhlqxyysuxrzquwutAvxyAzAqiwnfbqsletvjlwdjopkjdchtbgk_aBBB(1,0)
-25,oicocld04_00010,1,1,25,4,e246365bfd62ba9182fbc271dfa81bc7,18.744137095,zLvLvAALwAwMLMQPQkbejkihlimloqpvrwtwxuxyvyxytmwjkstbqhkjjuvxqmfgfhraft_Bcab(1,0)
-26,oicocld04_00011,1,1,27,4,baf51c356192d5a54e2ce9ef28021afa,18.7441370952,BvLLLLvwMzLAAzMQQQQdghikkjqrqpwspsuttAxvwAzzyAzsleuvbveagvqsfwkkneiwixgggwg_Bcab(1,0)
-27,oicocld04_00012,1,0,24,4,081a0709920b0818b3b57391ab828530,18.744137095,yvLPzvMAPzMzvQPQQefggjklkmnoorptwvuutxvwxxwaedwwwfepxxwkpeiusnfcvjs_bBaB(1,0)
-28,oicocld04_00013,1,0,24,4,360d992192cefbd015a6f5cda3d2c707,18.7441370952,yvLLvLwLMMwPPQPQQefjkkprosoquoqwustvxtvxwxghinnhadlthlakgnfrwqsfxsl_dCBb(1,0)
-29,oicocld04_00014,1,0,26,4,c1064716b415f0cf9a1b658bb12d3363,18.744137095,AvLvAvvPLAPwMAQMQQcefemqpkotuporxwtwvyywuxzzyzfefaihbttaqgkucnnfqhfspaxik_bCcF(1,0)
+id,name,cusps,betti,torsion,tets,solids,hash,volume,triangulation
+1,oicocld01_00000,0,0,[35],7,1,8d2621b40d38a5919bf11726a0dad541,4.6860342738,"hLLLQkbcgegffgtsplqkjr_DcCb(1,0)"
+2,oicocld01_00001,0,0,[29],8,1,d9222a99d643dfb6f14e292da47216b4,4.6860342738,"iLLAzQcaddefhghhnpupjxqcj_cBdC(1,0)"
+3,oicocld01_00002,0,0,[9],10,1,f6c0d12f8d5aa1b84b8b95e8aa2c0900,4.6860342738,"kLLLLQAkcbefhiiihjjpjqgcwoksqw_BcBb(1,0)"
+4,oicocld01_00003,0,0,[29],7,1,d9222a99d643dfb6f14e292da47216b4,4.6860342738,"hLLLQkcdfeggfgprxmpgjf_dced(1,0)"
+5,oicocld01_00004,0,0,"[2, 18]",9,1,55122702757a5332601b1b2779e87775,4.6860342738,"jLLzPPQcdeghighiipgausprgip_cBbB(1,0)"
+6,oicocld01_00005,0,0,"[11, 11]",8,1,b24d5d203a8f146ccfc6cda7b9da0708,4.6860342738,"iLvAMQcadfegghghjpijjravn_CdBc(1,0)"
+7,oicocld02_00000,0,0,[36],14,2,e56abc2852c66064eabaa883a6899334,9.3720685476,"oLvAAvvQQQcbeffglimnnkmnlmedmaxpeconnbvbb_CbBb(1,0)"
+8,oicocld02_00001,0,0,[120],15,2,1d5e3846c8f9c38ee13153e55f4af242,9.3720685476,"pLvvMLMMQPQbfhjlhknmjnolonomaujtoedxftkcscr_bCbB(1,0)"
+9,oicocld02_00002,0,0,[8],13,2,441643d0e6ee494dda8bc04f5d53baf1,9.3720685476,"nvLMvMwQQkedfhgkmiljmklmgghqgwafqnqfqk_CbDc(1,0)"
+10,oicocld02_00003,0,0,"[3, 6, 6]",14,2,dd823cd993f1d40af7c9e05d5f2470a1,9.3720685476,"ovLAvLzQQQcedfllmnkjjmlnnmwraokltfkoaotmm_cBba(1,0)"
+11,oicocld02_00004,0,0,"[3, 3, 3]",13,2,2171fe0197a469e9642c194a8ef02421,9.3720685476,"nvLLvzQQQkdgfihlkmjjklmmslmoovbofbosbs_BBCB(1,0)"
+12,oicocld03_00000,0,0,"[3, 30]",17,3,bdfb359f481f0bda17b0ff085a57626d,14.058102821,"rvLLLzLPPQPQceffhimnjloopoqnpqqsllmwaijbiideacowv_CdDf(1,0)"
+13,oicocld03_00001,0,0,"[19, 57]",19,3,f638b36481dfe2992e1af6827a5b401b,14.0581028214,"tLvLvAAQwLMMQkbfgkjhimjmnonqrsqrsslxgjssctotssovlxvixs_DbFc(1,0)"
+14,oicocld03_00002,0,0,"[2, 2, 2, 6]",22,3,c047ef8fd965300a445d52632922a902,14.0581028214,"wLvvLvMwMMAPAQQkafhjopkqplmutstqrqvsvuvjrbaeelmjrcpidinbrhmkjg_bbab(1,0)"
+15,oicocld04_00000,0,0,"[8, 312]",25,4,7f1c6c8ea8f8f495eac8603a1a5e5f2a,18.744137095,"zLLAvPwvwzQLPMLQQkbdedhgilpsonsruuvttyuwyxxytrashshhhjvjwkahaqiasoknoo_CBBB(1,0)"
+16,oicocld04_00001,0,0,"[2, 2, 72]",27,4,2697aa34afbeed5e7d6e41b693d2a01e,18.7441370952,"BLLLLAwQLvQLvLLQQPQacfghijjkjlopqsuzuuvywxzAAzAjkgfautvrfjokiugajrfqiqbxmsm_cBdB(1,0)"
+17,oicocld04_00002,0,0,"[7, 273]",24,4,a2bdea37b199fee44c5ecd9823199448,18.7441370952,"yLLLvwwPvAAPAPPQQbcgikljrrmqtutupqssxwwwvxtsmjxeenbfvapuafsuubsnsnk_dBcB(1,0)"
+18,oicocld04_00003,0,0,"[8, 112]",25,4,978d0969905ba6791a259257ccccb947,18.744137095,"zLLLvvLLLAQPPQMzQkbcgnkkqmptsnuuuvprrtwwxyyytsmxeetgkarcaxaawffitofieh_bCbB(1,0)"
+19,oicocld04_00004,0,1,"[2, 2, 4, 4]",24,4,ccf8c2f08af9a349f96e8203121c3df6,18.7441370952,"yLvAvvvwQPvMQMQQQadfmjonsspusqqupvwxutvxwxjaqqnvvqiopxiqpnpnscnksfw_dCbB(1,0)"
+20,oicocld04_00005,0,1,"[2, 2, 2, 34]",25,4,8ecbd4f96a591f5bd29a1ba47a9e1f58,18.744137095,"zLvvAvwMwQzzQAMMQkbhiljkpokomptrsqrsuwxywxyyhhauguaxahgjashbgugvaeneto_dced(1,0)"
+21,oicocld04_00006,0,0,"[2, 2, 18]",27,4,ccf15f056fbf0c417f4af655c585b627,18.744137095,"BLLLvLvvwPQMzAAPQQQbcgjkpspuurrwvtqxAtyvwyzzzAAtsmamwcwjcrbpajcatctdxekwkwj_BBBa(1,0)"
+22,oicocld04_00007,0,0,"[2, 238]",24,4,9765347774341c06e56e56df0ec9ece4,18.744137095,"yLvAvvPMzMzAPwQQQadfllmkopmptqqutxuwtxvvwxjaqldqciafahapfvhrhnlfcxb_CdDf(1,0)"
+23,oicocld04_00008,0,0,"[2, 4, 36]",25,4,752eb230ffa49ef0f3459f44222a3d12,18.7441370952,"zvLvLvAvvLQPQPQQQkefhisrotnwqpwrvxyxywuvtuxywdgftpdmsqxtaiorrkfjfvvfkj_DbFc(1,0)"
+24,oicocld04_00009,0,1,"[3, 45]",27,4,c5f8f2ce79dcd0f7cff79d799d455b29,18.744137095,"BLvLvQvwvwvPQMQPQQQcekjhhlqxyysuxrzquwutAvxyAzAqiwnfbqsletvjlwdjopkjdchtbgk_aBBB(1,0)"
+25,oicocld04_00010,0,1,[33],25,4,e246365bfd62ba9182fbc271dfa81bc7,18.744137095,"zLvLvAALwAwMLMQPQkbejkihlimloqpvrwtwxuxyvyxytmwjkstbqhkjjuvxqmfgfhraft_Bcab(1,0)"
+26,oicocld04_00011,0,1,"[2, 12]",27,4,baf51c356192d5a54e2ce9ef28021afa,18.7441370952,"BvLLLLvwMzLAAzMQQQQdghikkjqrqpwspsuttAxvwAzzyAzsleuvbveagvqsfwkkneiwixgggwg_Bcab(1,0)"
+27,oicocld04_00012,0,0,"[3, 3, 12]",24,4,081a0709920b0818b3b57391ab828530,18.744137095,"yvLPzvMAPzMzvQPQQefggjklkmnoorptwvuutxvwxxwaedwwwfepxxwkpeiusnfcvjs_bBaB(1,0)"
+28,oicocld04_00013,0,0,[60],24,4,360d992192cefbd015a6f5cda3d2c707,18.7441370952,"yvLLvLwLMMwPPQPQQefjkkprosoquoqwustvxtvxwxghinnhadlthlakgnfrwqsfxsl_dCBb(1,0)"
+29,oicocld04_00014,0,0,[18],26,4,c1064716b415f0cf9a1b658bb12d3363,18.744137095,"AvLvAvvPLAPwMAQMQQcefemqpkotuporxwtwvyywuxzzyzfefaihbttaqgkucnnfqhfspaxik_bCcF(1,0)"

@@ -43,7 +43,7 @@ def make_table(connection, tablecsv, sub_dir = '', name_index=True):
     """
     tablename = tablecsv.split('.')[0]
     csv_path = os.path.join(csv_dir, sub_dir, tablecsv)
-    csv_file = open(csv_path, 'r', newline='')
+    csv_file = open(csv_path, 'r')
     csv_reader = csv.reader(csv_file)
         
     #first line is column names

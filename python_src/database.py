@@ -708,6 +708,24 @@ def get_tables(ManifoldTable):
     """
     return get_core_tables(ManifoldTable) + get_platonic_tables(ManifoldTable)
 
+
+
+def connect_to_db(db_path):
+    """
+    Open the given sqlite database, ideally in read-only mode.
+    """
+    if sys.version_info >= (3,4):
+        uri = 'file:' + db_path + '?mode=ro'
+        return sqlite3.connect(uri, uri=True)
+    elif sys.platform.startswith('win'):
+        try:
+            import apsw
+            return apsw.Connection(db_path, flags=apsw.SQLITE_OPEN_READONLY)
+        except ImportError:
+            return sqlite3.connect(db_path)
+    else:
+        return sqlite3.connect(db_path)
+
 def get_DT_tables():
     """
     Returns two barebones databases for looking up DT codes by name. 
@@ -721,23 +739,19 @@ def get_DT_tables():
             self._select = 'select DT from {}'.format(table)
             self.name = name
             
-            self._connection = sqlite3.connect(db_path)
-            self._connection.row_factory = self._DT_factory
-
-        def _DT_factory(self, cursor, row):
-            return row[0]
+            self._connection = connect_to_db(db_path)
+            self._cursor = self._connection.cursor()
 
         def __repr__(self):
             return self.name
 
         def __getitem__(self, link_name):
             select_query = self._select + ' where name="{}"'.format(link_name)
-            return self._connection.execute(select_query).fetchall()[0]
+            return self._cursor.execute(select_query).fetchall()[0][0]
 
         def __len__(self):
             length_query = 'select count(*) from ' + self._table
-            cursor = self._connection.execute(length_query)
-            return cursor.fetchone()
+            return self._cursor.execute(length_query).fetchone()[0]
 
     RolfsenDTcodes = DTCodeTable(name = 'RolfsenDTcodes',
                                    table = 'link_exteriors',

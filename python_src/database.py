@@ -720,8 +720,13 @@ def get_DT_tables():
             self._table = table
             self._select = 'select DT from {}'.format(table)
             self.name = name
-            
-            self._connection = sqlite3.connect(db_path)
+
+            if sys.version_info >= (3,4):
+                # Open DB in read-only mode
+                db_path = 'file:' + db_path + '?mode=ro'
+                self._connection = sqlite3.connect(db_path, uri=True)
+            else:
+                self._connection = sqlite3.connect(db_path)
             self._connection.row_factory = self._DT_factory
 
         def _DT_factory(self, cursor, row):

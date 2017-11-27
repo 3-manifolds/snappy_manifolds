@@ -133,10 +133,10 @@ setup(
         'Topic :: Scientific/Engineering :: Mathematics',
         ],
 
-    packages = ['snappy_manifolds', 'snappy_manifolds/database_files'],
+    packages = ['snappy_manifolds', 'snappy_manifolds/sqlite_files'],
     package_dir = {'snappy_manifolds':'python_src',
-                   'snappy_manifolds/database_files':'manifold_src'},
-    package_data = {'snappy_manifolds/database_files': sqlite_files},
+                   'snappy_manifolds/sqlite_files':'manifold_src'},
+    package_data = {'snappy_manifolds/sqlite_files': sqlite_files},
     ext_modules = [],
     zip_safe = False,
     cmdclass = {'release': Release,

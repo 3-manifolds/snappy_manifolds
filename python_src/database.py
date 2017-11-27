@@ -3,7 +3,7 @@ import sys, sqlite3, re, os, random
 
 # This module uses sqlite3 databases with multiple tables.
 # The path to the database file is specified at the module level.
-from .database_files import __path__ as manifolds_paths
+from .sqlite_files import __path__ as manifolds_paths
 manifolds_path = manifolds_paths[0]
 database_path = os.path.join(manifolds_path, 'manifolds.sqlite')
 alt_database_path = os.path.join(manifolds_path, 'more_manifolds.sqlite')

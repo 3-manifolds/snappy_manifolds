@@ -2,10 +2,13 @@ import snappy
 import snappy_manifolds
 from snappy.decorated_isosig import *
 from itertools import permutations, product
+
+import sys
+sys.path.append('../validation')
 from compare_common import same_labeled_triangulation_and_peripheral_curves as same
 
-tables = snappy_manifolds.get_tables(snappy.Manifold,
-                                     snappy.database.IsosigManifoldTable)
+#tables = snappy_manifolds.get_tables(snappy.Manifold,
+#                                     snappy.database.IsosigManifoldTable)
 
 def fix_table(new_table, snappy_name):
     name = repr(new_table).split(' ')[0][5:]
@@ -175,7 +178,7 @@ def all_peripherals_encoded(manifold, isosig, triangulation_class,
 
 
 #fix_table(tables[0], 'OrientableCuspedCensus')
-fix_table(tables[1], 'NonorientableCuspedCensus')
+#fix_table(tables[1], 'NonorientableCuspedCensus')
 #fix_table(tables[4], 'LinkExteriors')
 #fix_table(tables[5], 'CensusKnots')
 #fix_table(tables[6](filter="id>174885"), 'HTLinkExteriors')

@@ -250,10 +250,10 @@ def get_core_tables(ManifoldTable):
 
     class CensusKnots(ManifoldTable):
         """
-        Iterator for all of the knot exteriors in the SnapPea Census, as
-        tabulated by Callahan, Dean, Weeks, Champanerkar, Kofman and
-        Patterson.  These are the knot exteriors which can be triangulated
-        by at most 7 ideal tetrahedra.
+        Iterator for all of the knot exteriors in the SnapPea Census,
+        as tabulated by Callahan, Dean, Weeks, Champanerkar, Kofman,
+        Patterson, and Dunfield.  These are the knot exteriors which
+        can be triangulated by at most 9 ideal tetrahedra.
 
         >>> for M in CensusKnots[3.4:3.5]:
         ...   print(M, M.volume(), LinkExteriors.identify(M))
@@ -262,6 +262,11 @@ def get_core_tables(ManifoldTable):
         K5_1(0,0) 3.41791484 False
         K5_2(0,0) 3.42720525 8_1(0,0)
         K5_3(0,0) 3.48666015 9_2(0,0)
+
+        >>> len(CensusKnots)
+        1267
+        >>> CensusKnots[-1].num_tetrahedra()
+        9
         """
         
         _regex = re.compile('[kK][2-8]_([0-9]+)$')

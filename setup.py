@@ -118,7 +118,7 @@ setup(
     version = version,
     description = 'Database of snappy manifolds',
     long_description = long_description,
-    url = 'https://bitbucket.org/t3m/snappy_manifolds',
+    url = 'https://github.com/3-manifolds/snappy_manifolds',
     author = 'Marc Culler and Nathan M. Dunfield and Mattias Goerner and Malik Obeidin',
     author_email = 'snappy-help@computop.org, mobeidin@illiois.edu',
     license='GPLv2+',

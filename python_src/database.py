@@ -9,7 +9,7 @@ database_path = os.path.join(manifolds_path, 'manifolds.sqlite')
 alt_database_path = os.path.join(manifolds_path, 'more_manifolds.sqlite')
 platonic_database_path = os.path.join(manifolds_path, 'platonic_manifolds.sqlite')
 
-split_filling_info = re.compile('(.*?)((?:\([0-9 .+-]+,[0-9 .+-]+\))*$)')
+split_filling_info = re.compile(r'(.*?)((?:\([0-9 .+-]+,[0-9 .+-]+\))*$)')
 
 def get_core_tables(ManifoldTable):
     """
@@ -69,7 +69,7 @@ def get_core_tables(ManifoldTable):
         5^2_1(0,0)(0,0)
         """
 
-        _regex = re.compile('([msvt])([0-9]+)$|o9_\d\d\d\d\d$')
+        _regex = re.compile(r'([msvt])([0-9]+)$|o9_\d\d\d\d\d$')
 
         def __init__(self, **kwargs):
            return ManifoldTable.__init__(self, table='orientable_cusped_view',
@@ -89,7 +89,7 @@ def get_core_tables(ManifoldTable):
         m131(0,0) Z + Z
         """
 
-        _regex = re.compile('[mxy]([0-9]+)$')
+        _regex = re.compile(r'[mxy]([0-9]+)$')
         
         def __init__(self, **kwargs):
            return ManifoldTable.__init__(self,
@@ -134,7 +134,7 @@ def get_core_tables(ManifoldTable):
         7^2_8(0,0)(0,0)
         """
 
-        _regex = re.compile('([0-9]+_[0-9]+)$|[0-9]+[\^][0-9]+_[0-9]+$')
+        _regex = re.compile(r'([0-9]+_[0-9]+)$|[0-9]+[\^][0-9]+_[0-9]+$')
         
         def __init__(self, **kwargs):
            return ManifoldTable.__init__(self,
@@ -212,7 +212,7 @@ def get_core_tables(ManifoldTable):
         L14n26042 [(10, 12, 14, -20), (8, 2, 28, -22, -24, -26, -6, -16, -18, 4)]
         """
 
-        _regex = re.compile('[KL][0-9]+[an]([0-9]+)$')
+        _regex = re.compile(r'[KL][0-9]+[an]([0-9]+)$')
         
         def __init__(self, **kwargs):
            return LinkExteriorsTable.__init__(self,
@@ -269,7 +269,7 @@ def get_core_tables(ManifoldTable):
         9
         """
         
-        _regex = re.compile('[kK][2-8]_([0-9]+)$')
+        _regex = re.compile(r'[kK][2-8]_([0-9]+)$')
         
         def __init__(self, **kwargs):
            return ManifoldTable.__init__(self,
@@ -366,7 +366,7 @@ def get_platonic_tables(ManifoldTable):
 
         """
 
-        _regex = re.compile('otet\d+_\d+')
+        _regex = re.compile(r'otet\d+_\d+')
         
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
@@ -387,7 +387,7 @@ def get_platonic_tables(ManifoldTable):
 
         """
 
-        _regex = re.compile('ntet\d+_\d+')
+        _regex = re.compile(r'ntet\d+_\d+')
         
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
@@ -429,7 +429,7 @@ def get_platonic_tables(ManifoldTable):
         """
 
         _select = 'select name, triangulation, DT from %s '
-        _regex = re.compile('ooct\d+_\d+')
+        _regex = re.compile(r'ooct\d+_\d+')
 
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
@@ -473,7 +473,7 @@ def get_platonic_tables(ManifoldTable):
 
         """
 
-        _regex = re.compile('noct\d+_\d+')
+        _regex = re.compile(r'noct\d+_\d+')
         
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
@@ -493,7 +493,7 @@ def get_platonic_tables(ManifoldTable):
 
         """
 
-        _regex = re.compile('ocube\d+_\d+')
+        _regex = re.compile(r'ocube\d+_\d+')
         
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
@@ -515,7 +515,7 @@ def get_platonic_tables(ManifoldTable):
 
         """
 
-        _regex = re.compile('ncube\d+_\d+')
+        _regex = re.compile(r'ncube\d+_\d+')
         
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
@@ -541,7 +541,7 @@ def get_platonic_tables(ManifoldTable):
 
         """
 
-        _regex = re.compile('odode\d+_\d+')
+        _regex = re.compile(r'odode\d+_\d+')
         
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
@@ -560,7 +560,7 @@ def get_platonic_tables(ManifoldTable):
 
         """
         
-        _regex = re.compile('ndode\d+_\d+')
+        _regex = re.compile(r'ndode\d+_\d+')
         
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
@@ -579,7 +579,7 @@ def get_platonic_tables(ManifoldTable):
 
         """
         
-        _regex = re.compile('nicocld\d+_\d+')
+        _regex = re.compile(r'nicocld\d+_\d+')
         
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
@@ -600,7 +600,7 @@ def get_platonic_tables(ManifoldTable):
         oicocld01_00000(1,0)
         """
 
-        _regex = re.compile('oicocld\d+_\d+')
+        _regex = re.compile(r'oicocld\d+_\d+')
         
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
@@ -619,7 +619,7 @@ def get_platonic_tables(ManifoldTable):
 
         """
 
-        _regex = re.compile('ncube\d+_\d+')
+        _regex = re.compile(r'ncube\d+_\d+')
         
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
@@ -638,7 +638,7 @@ def get_platonic_tables(ManifoldTable):
 
         """
 
-        _regex = re.compile('ocube\d+_\d+')
+        _regex = re.compile(r'ocube\d+_\d+')
         
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
@@ -657,7 +657,7 @@ def get_platonic_tables(ManifoldTable):
 
         """
 
-        _regex = re.compile('ndodecld\d+_\d+')
+        _regex = re.compile(r'ndodecld\d+_\d+')
         
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
@@ -679,7 +679,7 @@ def get_platonic_tables(ManifoldTable):
 
         """
 
-        _regex = re.compile('ododecld\d+_\d+')
+        _regex = re.compile(r'ododecld\d+_\d+')
         
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(

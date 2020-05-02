@@ -175,13 +175,15 @@ def get_core_tables(ManifoldTable):
 
     class HTLinkExteriors(LinkExteriorsTable):
         """
-        Iterator for all knots and links up to 14 crossings as tabulated
-        by Jim Hoste and Morwen Thistlethwaite.  In addition to the filter
-        arguments supported by all ManifoldTables, this iterator provides
-        alternating=<True/False>; knots_vs_links=<'knots'/'links'>; and
-        crossings=N. These allow iterations only through alternating or
-        non-alternating links with 1 or more than 1 component and a
-        specified crossing number.
+        Iterator for all knots up to 14 or 15 crossings (see below for
+        which) and links up to 14 crossings as tabulated by Jim Hoste
+        and Morwen Thistlethwaite.  In addition to the filter
+        arguments supported by all ManifoldTables, this iterator
+        provides alternating=<True/False>;
+        knots_vs_links=<'knots'/'links'>; and crossings=N. These allow
+        iterations only through alternating or non-alternating links
+        with 1 or more than 1 component and a specified crossing
+        number.
 
         >>> HTLinkExteriors.identify(LinkExteriors['8_20'])
         K8n1(0,0)
@@ -210,6 +212,17 @@ def get_core_tables(ManifoldTable):
         L14n24425 [(10, -12, 14, -16), (-18, 26, -24, 22, -20, -28, -6, 4, -2, 8)]
         L14n24777 [(10, 12, -14, -18), (2, 28, -22, 24, -6, 26, -8, 4, 16, 20)]
         L14n26042 [(10, 12, 14, -20), (8, 2, 28, -22, -24, -26, -6, -16, -18, 4)]
+
+        SnapPy comes with one of two versions of HTLinkExteriors.  The
+        smaller original one provides knots and links up to 14
+        crossings; the larger adds to that the knots (but not links)
+        with 15 crossings.  You can determine which you have by whether
+
+        >>> len(HTLinkExteriors(crossings=15))   # doctest: +SKIP
+
+        gives 0 or 253293. To upgrade to the larger database, install
+        the Python module 'snappy_15_knots' as discussed on the
+        'installing SnapPy' webpage.
         """
 
         _regex = re.compile(r'[KL][0-9]+[an]([0-9]+)$')

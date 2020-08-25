@@ -282,7 +282,7 @@ def get_core_tables(ManifoldTable):
         9
         """
         
-        _regex = re.compile(r'[kK][2-8]_([0-9]+)$')
+        _regex = re.compile(r'[kK][2-9]_([0-9]+)$')
         
         def __init__(self, **kwargs):
            return ManifoldTable.__init__(self,

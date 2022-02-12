@@ -42,21 +42,21 @@ def get_core_tables(ManifoldTable):
         Iterator for all orientable cusped hyperbolic manifolds that
         can be triangulated with at most 9 ideal tetrahedra.
 
-        >>> for M in OrientableCuspedCensus[3:6]: print(M, M.volume())
+        >>> for M in OrientableCuspedCensus[3:6]: print(M, M.volume()) # doctest: +NUMERIC6
         ... 
         m007(0,0) 2.56897060
         m009(0,0) 2.66674478
         m010(0,0) 2.66674478
-        >>> for M in OrientableCuspedCensus[-9:-6]: print(M, M.volume())
+        >>> for M in OrientableCuspedCensus[-9:-6]: print(M, M.volume()) # doctest: +NUMERIC6
         ...
         o9_44241(0,0) 8.96323909
         o9_44242(0,0) 8.96736842
         o9_44243(0,0) 8.96736842
-        >>> for M in OrientableCuspedCensus[4.10:4.11]: print(M, M.volume())
+        >>> for M in OrientableCuspedCensus[4.10:4.11]: print(M, M.volume()) # doctest: +NUMERIC6
         ... 
         m217(0,0) 4.10795310
         m218(0,0) 4.10942659
-        >>> for M in OrientableCuspedCensus(num_cusps=2)[:3]:
+        >>> for M in OrientableCuspedCensus(num_cusps=2)[:3]: # doctest: +NUMERIC6
         ...   print(M, M.volume(), M.num_cusps())
         ... 
         m125(0,0)(0,0) 3.66386238 2
@@ -113,7 +113,7 @@ def get_core_tables(ManifoldTable):
         at most 10 crossings, using the Rolfsen notation.  The triangulations
         were computed by Joe Christy.
 
-        >>> for K in LinkExteriors(num_cusps=3)[-3:]:
+        >>> for K in LinkExteriors(num_cusps=3)[-3:]: # doctest: +NUMERIC6
         ...   print(K, K.volume())
         ... 
         10^3_72(0,0)(0,0)(0,0) 14.35768903
@@ -190,7 +190,7 @@ def get_core_tables(ManifoldTable):
         >>> Mylist = HTLinkExteriors(alternating=False,knots_vs_links='links')[8.5:8.7]
         >>> len(Mylist)
         8
-        >>> for L in Mylist:
+        >>> for L in Mylist: # doctest: +NUMERIC6
         ...   print( L.name(), L.num_cusps(), L.volume() )
         ... 
         L11n138 2 8.66421454
@@ -268,7 +268,7 @@ def get_core_tables(ManifoldTable):
         Patterson, and Dunfield.  These are the knot exteriors which
         can be triangulated by at most 9 ideal tetrahedra.
 
-        >>> for M in CensusKnots[3.4:3.5]:
+        >>> for M in CensusKnots[3.4:3.5]: # doctest: +NUMERIC6
         ...   print(M, M.volume(), LinkExteriors.identify(M))
         ... 
         K4_3(0,0) 3.47424776 False
@@ -315,7 +315,7 @@ def get_core_tables(ManifoldTable):
         Iterator for 17 nonorientable closed hyperbolic manifolds from the
         census by Hodgson and Weeks.
 
-        >>> for M in NonorientableClosedCensus[:3]: print(M, M.volume())
+        >>> for M in NonorientableClosedCensus[:3]: print(M, M.volume()) # doctest: +NUMERIC6
         ... 
         m018(1,0) 2.02988321
         m177(1,0) 2.56897060
@@ -369,7 +369,7 @@ def get_platonic_tables(ManifoldTable):
         25 tetrahedra, i.e., manifolds that admit a tessellation by regular ideal
         hyperbolic tetrahedra.
 
-        >>> for M in TetrahedralOrientableCuspedCensus(solids = 5):
+        >>> for M in TetrahedralOrientableCuspedCensus(solids = 5): # doctest: +NUMERIC6
         ...     print(M, M.volume())
         otet05_00000(0,0) 5.07470803
         otet05_00001(0,0)(0,0) 5.07470803
@@ -520,7 +520,7 @@ def get_platonic_tables(ManifoldTable):
         5 cubes, i.e., manifolds that admit a tessellation by regular ideal
         hyperbolic octahedra.
 
-        >>> for M in CubicalNonorientableCuspedCensus[-3:]:
+        >>> for M in CubicalNonorientableCuspedCensus[-3:]: # doctest: +NUMERIC6
         ...     print(M, M.volume())
         ncube05_30945(0,0) 25.37354016
         ncube05_30946(0,0)(0,0) 25.37354016
@@ -607,7 +607,7 @@ def get_platonic_tables(ManifoldTable):
         hyperbolic icosahedra.
 
         >>> M = IcosahedralOrientableClosedCensus[0]
-        >>> M.volume()
+        >>> M.volume() # doctest: +NUMERIC6
         4.68603427
         >>> M
         oicocld01_00000(1,0)
@@ -665,7 +665,7 @@ def get_platonic_tables(ManifoldTable):
         to 2 dodecahedra, i.e., manifolds that admit a tessellation by regular finite
         hyperbolic dodecahedra with a dihedral angle of 72 degrees.
 
-        >>> DodecahedralNonorientableClosedCensus[0].volume()
+        >>> DodecahedralNonorientableClosedCensus[0].volume() # doctest: +NUMERIC6
         22.39812948
 
         """

@@ -4,3 +4,4 @@ snappy_manifolds.egg-info
 __pycache__
 *.pyc
 manifold_src/*.sqlite
+.DS_Store

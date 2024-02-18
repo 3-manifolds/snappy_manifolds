@@ -1,7 +1,3 @@
-long_description =  """\
-This is a python package of the Manifolds from snappy, separated out.
-"""
-
 import re, sys, subprocess, os, shutil, glob, sysconfig
 from setuptools import setup, Command
 from setuptools.command.build_py import build_py
@@ -108,31 +104,8 @@ class Test(Command):
         from snappy_manifolds.test import run_tests
         sys.exit(run_tests())
 
-    
-# Get version number from module
-version = re.search("__version__ = '(.*)'",
-                    open('python_src/__init__.py').read()).group(1)
 
 setup(
-    name = 'snappy_manifolds',
-    version = version,
-    description = 'Database of snappy manifolds',
-    long_description = long_description,
-    url = 'https://github.com/3-manifolds/snappy_manifolds',
-    author = 'Marc Culler and Nathan M. Dunfield and Mattias Goerner and Malik Obeidin',
-    author_email = 'snappy-help@computop.org, mobeidin@illiois.edu',
-    license='GPLv2+',
-    classifiers = [
-        'Development Status :: 5 - Production/Stable',
-        'Intended Audience :: Science/Research',
-        'License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)',
-        'Operating System :: OS Independent',
-        'Programming Language :: C',
-        'Programming Language :: Cython',
-        'Programming Language :: Python',
-        'Topic :: Scientific/Engineering :: Mathematics',
-        ],
-
     packages = ['snappy_manifolds', 'snappy_manifolds/sqlite_files'],
     package_dir = {'snappy_manifolds':'python_src',
                    'snappy_manifolds/sqlite_files':'manifold_src'},

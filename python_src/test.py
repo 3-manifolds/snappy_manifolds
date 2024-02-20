@@ -4,7 +4,7 @@ doctests are run by snappy.
 
 >>> Rolfsen, HT = get_DT_tables()
 >>> len(Rolfsen), len(HT)
-(1215, 180510)
+(1216, 180511)
 >>> str(HT['L12n345'])
 'lbbjceGkjHILFadb.010001100011'
 """

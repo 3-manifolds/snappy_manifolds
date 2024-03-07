@@ -1,0 +1,34 @@
+[build-system]
+requires = [
+    "setuptools>=59",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "snappy_manifolds"
+description = "Database of snappy manifolds"
+authors = [
+    {name = "Marc Culler", email = "snappy-help@computop.org"},
+    {name = "Nathan M. Dunfield", email = "snappy-help@computop.org"},
+    {name = "Matthias Goerner", email = "snappy-help@computop.org"},
+    {name = "Malik Obeidin" }
+]
+readme = "README.rst"
+license = {text = "GPLv2+"}
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)",
+    "Operating System :: OS Independent",
+    "Programming Language :: C",
+    "Programming Language :: Cython",
+    "Programming Language :: Python",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+dynamic = ["version"]
+
+[project.urls]
+Homepage = "https://github.com/3-manifolds/snappy_manifolds"
+
+[tool.setuptools.dynamic]
+version = {attr = "snappy_manifolds.__version__"}

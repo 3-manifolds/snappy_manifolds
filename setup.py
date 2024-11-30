@@ -85,7 +85,7 @@ class PipInstall(Command):
         new_wheel = max(wheels, key=os.path.getmtime)            
         check_call([python, '-m', 'pip', 'install', '--upgrade',
                     '--upgrade-strategy', 'only-if-needed',
-                    new_wheel])
+                    '--force-reinstall', new_wheel])
 
 class Test(Command):
     user_options = []

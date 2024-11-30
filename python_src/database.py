@@ -1,4 +1,3 @@
-from __future__ import print_function
 import sys, sqlite3, re, os, random
 
 # This module uses sqlite3 databases with multiple tables.
@@ -23,11 +22,6 @@ def get_core_tables(ManifoldTable):
 
     class ClosedManifoldTable(ManifoldTable):
         _select = 'select name, triangulation, m, l from %s '
-
-        def __call__(self, **kwargs):
-            return ClosedManifoldTable(self._table,
-                                       db_path = database_path,
-                                       **kwargs)
 
         def _finalize(self, M, row):
             """

@@ -72,7 +72,7 @@ def get_core_tables(ManifoldTable):
 
     class NonorientableCuspedCensus(ManifoldTable):
         """
-        Iterator for all orientable cusped hyperbolic manifolds that
+        Iterator for all nonorientable cusped hyperbolic manifolds that
         can be triangulated with at most 5 ideal tetrahedra.
 
         >>> for M in NonorientableCuspedCensus(betti=2)[:3]:

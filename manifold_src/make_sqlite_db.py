@@ -77,10 +77,10 @@ def make_table(connection, tablecsv, sub_dir = '', name_index=True):
     for row in csv_reader:
         #print(row)
         data_list = row[1:] #skip id
-        for i,data in enumerate(data_list): #chernsimons is None sometimes
+        for i, data in enumerate(data_list): #chernsimons is None sometimes
             if data == 'None':
                 data_list[i] = 'Null'
-            if isinstance(data, str):
+            elif isinstance(data, str):
                 data_list[i] = data.replace("'", '"')
         connection.execute(insert_query%tuple(data_list))
 

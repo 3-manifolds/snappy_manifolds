@@ -4,7 +4,8 @@ from setuptools.command.build_py import build_py
 
 sqlite_files = ['manifolds.sqlite',
                 'more_manifolds.sqlite',
-                'platonic_manifolds.sqlite']
+                'platonic_manifolds.sqlite',
+                'ribbon_links.sqlite']
 
 def check_call(args):
     try:

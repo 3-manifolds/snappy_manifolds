@@ -31,7 +31,10 @@ schema_types = {
     'perm':'int',
     'cuspedtriangulation':'text',
     'solids': 'int',
-    'isAugKTG': 'int'
+    'isAugKTG': 'int',
+    'hyperbolic':'int',
+    'ribbon_cert':'text',
+    'isom_sig':'text',
 }
 
 
@@ -77,8 +80,8 @@ def make_table(connection, tablecsv, sub_dir = '', name_index=True):
         for i,data in enumerate(data_list): #chernsimons is None sometimes
             if data == 'None':
                 data_list[i] = 'Null'
-                #print('Null values found')
-                #print(data_list)
+            if isinstance(data, str):
+                data_list[i] = data.replace("'", '"')
         connection.execute(insert_query%tuple(data_list))
 
     # We need to index columns that will be queried frequently for speed.
@@ -176,3 +179,13 @@ if __name__ == '__main__':
         with sqlite3.connect(platonic_db) as connection:
             for file, args in platonic_data.items():
                 make_table(connection, file, **args)
+
+    ribbon_db = 'ribbon_links.sqlite'
+    ribbon_data = {'ribbon_links.csv': {}}
+    if is_stale(ribbon_db, ribbon_data):
+        if os.path.exists(ribbon_db):
+            os.remove(ribbon_db)
+        with sqlite3.connect(ribbon_db) as connection:
+            for tablename, args in ribbon_data.items():
+                make_table(connection, tablename, **args)
+            connection.execute(" create view ribbon_links_view as select * from ribbon_links")

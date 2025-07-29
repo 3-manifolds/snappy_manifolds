@@ -7,6 +7,8 @@ manifolds_path = manifolds_paths[0]
 database_path = os.path.join(manifolds_path, 'manifolds.sqlite')
 alt_database_path = os.path.join(manifolds_path, 'more_manifolds.sqlite')
 platonic_database_path = os.path.join(manifolds_path, 'platonic_manifolds.sqlite')
+ribbon_database_path = os.path.join(manifolds_path, 'ribbon_links.sqlite')
+
 
 split_filling_info = re.compile(r'(.*?)((?:\([0-9 .+-]+,[0-9 .+-]+\))*$)')
 
@@ -37,7 +39,7 @@ def get_core_tables(ManifoldTable):
         can be triangulated with at most 9 ideal tetrahedra.
 
         >>> for M in OrientableCuspedCensus[3:6]: print(M, M.volume()) # doctest: +NUMERIC6
-        ... 
+        ...
         m007(0,0) 2.56897060
         m009(0,0) 2.66674478
         m010(0,0) 2.66674478
@@ -47,12 +49,12 @@ def get_core_tables(ManifoldTable):
         o9_44242(0,0) 8.96736842
         o9_44243(0,0) 8.96736842
         >>> for M in OrientableCuspedCensus[4.10:4.11]: print(M, M.volume()) # doctest: +NUMERIC6
-        ... 
+        ...
         m217(0,0) 4.10795310
         m218(0,0) 4.10942659
         >>> for M in OrientableCuspedCensus(num_cusps=2)[:3]: # doctest: +NUMERIC6
         ...   print(M, M.volume(), M.num_cusps())
-        ... 
+        ...
         m125(0,0)(0,0) 3.66386238 2
         m129(0,0)(0,0) 3.66386238 2
         m202(0,0)(0,0) 4.05976643 2
@@ -68,7 +70,7 @@ def get_core_tables(ManifoldTable):
         def __init__(self, **kwargs):
            return ManifoldTable.__init__(self, table='orientable_cusped_view',
                                                db_path = database_path,
-                                               **kwargs) 
+                                               **kwargs)
 
     class NonorientableCuspedCensus(ManifoldTable):
         """
@@ -77,14 +79,14 @@ def get_core_tables(ManifoldTable):
 
         >>> for M in NonorientableCuspedCensus(betti=2)[:3]:
         ...   print(M, M.homology())
-        ... 
+        ...
         m124(0,0)(0,0)(0,0) Z/2 + Z + Z
         m128(0,0)(0,0) Z + Z
         m131(0,0) Z + Z
         """
 
         _regex = re.compile(r'[mxy]([0-9]+)$')
-        
+
         def __init__(self, **kwargs):
            return ManifoldTable.__init__(self,
                                               table='nonorientable_cusped_view',
@@ -109,7 +111,7 @@ def get_core_tables(ManifoldTable):
 
         >>> for K in LinkExteriors(num_cusps=3)[-3:]: # doctest: +NUMERIC6
         ...   print(K, K.volume())
-        ... 
+        ...
         10^3_72(0,0)(0,0)(0,0) 14.35768903
         10^3_73(0,0)(0,0)(0,0) 15.86374431
         10^3_74(0,0)(0,0)(0,0) 15.55091438
@@ -129,7 +131,7 @@ def get_core_tables(ManifoldTable):
         """
 
         _regex = re.compile(r'([0-9]+_[0-9]+)$|[0-9]+[\^][0-9]+_[0-9]+$')
-        
+
         def __init__(self, **kwargs):
            return ManifoldTable.__init__(self,
                                               table='link_exteriors_view',
@@ -186,7 +188,7 @@ def get_core_tables(ManifoldTable):
         8
         >>> for L in Mylist: # doctest: +NUMERIC6
         ...   print( L.name(), L.num_cusps(), L.volume() )
-        ... 
+        ...
         L11n138 2 8.66421454
         L12n1097 2 8.51918360
         L14n13364 2 8.69338342
@@ -197,7 +199,7 @@ def get_core_tables(ManifoldTable):
         L14n26042 2 8.64333782
         >>> for L in Mylist:
         ...   print( L.name(), L.DT_code() )
-        ... 
+        ...
         L11n138 [(8, -10, -12), (6, -16, -18, -22, -20, -2, -4, -14)]
         L12n1097 [(10, 12, -14, -18), (22, 2, -20, 24, -6, -8, 4, 16)]
         L14n13364 [(8, -10, 12), (6, -18, 20, -22, -26, -24, 2, -4, -28, -16, -14)]
@@ -220,7 +222,7 @@ def get_core_tables(ManifoldTable):
         """
 
         _regex = re.compile(r'[KL][0-9]+[an]([0-9]+)$')
-        
+
         def __init__(self, **kwargs):
            return LinkExteriorsTable.__init__(self,
                                          table='HT_links_view',
@@ -264,7 +266,7 @@ def get_core_tables(ManifoldTable):
 
         >>> for M in CensusKnots[3.4:3.5]: # doctest: +NUMERIC6
         ...   print(M, M.volume(), LinkExteriors.identify(M))
-        ... 
+        ...
         K4_3(0,0) 3.47424776 False
         K5_1(0,0) 3.41791484 False
         K5_2(0,0) 3.42720525 8_1(0,0)
@@ -275,9 +277,9 @@ def get_core_tables(ManifoldTable):
         >>> CensusKnots[-1].num_tetrahedra()
         9
         """
-        
+
         _regex = re.compile(r'[kK][2-9]_([0-9]+)$')
-        
+
         def __init__(self, **kwargs):
            return ManifoldTable.__init__(self,
                                               table='census_knots_view',
@@ -295,14 +297,14 @@ def get_core_tables(ManifoldTable):
         1
         >>> for M in OrientableClosedCensus(betti=2):
         ...   print(M, M.homology())
-        ... 
+        ...
         v1539(5,1) Z + Z
         """
         def __init__(self, **kwargs):
            return ClosedManifoldTable.__init__(self,
                                                     table='orientable_closed_view',
                                                     db_path = database_path,
-                                                    **kwargs) 
+                                                    **kwargs)
 
     class NonorientableClosedCensus(ClosedManifoldTable):
         """
@@ -310,7 +312,7 @@ def get_core_tables(ManifoldTable):
         census by Hodgson and Weeks.
 
         >>> for M in NonorientableClosedCensus[:3]: print(M, M.volume()) # doctest: +NUMERIC6
-        ... 
+        ...
         m018(1,0) 2.02988321
         m177(1,0) 2.56897060
         m153(1,0) 2.66674478
@@ -319,7 +321,7 @@ def get_core_tables(ManifoldTable):
            return ClosedManifoldTable.__init__(self,
                                                     table='nonorientable_closed_view',
                                                     db_path = database_path,
-                                                    **kwargs) 
+                                                    **kwargs)
 
 
     return [OrientableCuspedCensus(),
@@ -331,7 +333,7 @@ def get_core_tables(ManifoldTable):
             HTLinkExteriors()]
 
 def get_platonic_tables(ManifoldTable):
-    
+
     class PlatonicManifoldTable(ManifoldTable):
         """
         Iterator for platonic hyperbolic manifolds.
@@ -374,7 +376,7 @@ def get_platonic_tables(ManifoldTable):
         """
 
         _regex = re.compile(r'otet\d+_\d+')
-        
+
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
                 self,
@@ -395,7 +397,7 @@ def get_platonic_tables(ManifoldTable):
         """
 
         _regex = re.compile(r'ntet\d+_\d+')
-        
+
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
                 self,
@@ -481,7 +483,7 @@ def get_platonic_tables(ManifoldTable):
         """
 
         _regex = re.compile(r'noct\d+_\d+')
-        
+
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
                 self,
@@ -501,7 +503,7 @@ def get_platonic_tables(ManifoldTable):
         """
 
         _regex = re.compile(r'ocube\d+_\d+')
-        
+
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
                 self,
@@ -523,7 +525,7 @@ def get_platonic_tables(ManifoldTable):
         """
 
         _regex = re.compile(r'ncube\d+_\d+')
-        
+
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
                 self,
@@ -549,7 +551,7 @@ def get_platonic_tables(ManifoldTable):
         """
 
         _regex = re.compile(r'odode\d+_\d+')
-        
+
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
                 self,
@@ -566,9 +568,9 @@ def get_platonic_tables(ManifoldTable):
         4146
 
         """
-        
+
         _regex = re.compile(r'ndode\d+_\d+')
-        
+
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
                 self,
@@ -585,9 +587,9 @@ def get_platonic_tables(ManifoldTable):
         [nicocld02_00000(1,0)]
 
         """
-        
+
         _regex = re.compile(r'nicocld\d+_\d+')
-        
+
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
                 self,
@@ -608,7 +610,7 @@ def get_platonic_tables(ManifoldTable):
         """
 
         _regex = re.compile(r'oicocld\d+_\d+')
-        
+
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
                 self,
@@ -627,7 +629,7 @@ def get_platonic_tables(ManifoldTable):
         """
 
         _regex = re.compile(r'ncube\d+_\d+')
-        
+
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
                 self,
@@ -646,7 +648,7 @@ def get_platonic_tables(ManifoldTable):
         """
 
         _regex = re.compile(r'ocube\d+_\d+')
-        
+
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
                 self,
@@ -665,7 +667,7 @@ def get_platonic_tables(ManifoldTable):
         """
 
         _regex = re.compile(r'ndodecld\d+_\d+')
-        
+
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
                 self,
@@ -687,7 +689,7 @@ def get_platonic_tables(ManifoldTable):
         """
 
         _regex = re.compile(r'ododecld\d+_\d+')
-        
+
         def __init__(self, **kwargs):
             return PlatonicManifoldTable.__init__(
                 self,
@@ -709,6 +711,74 @@ def get_platonic_tables(ManifoldTable):
             DodecahedralNonorientableClosedCensus(),
             DodecahedralOrientableClosedCensus()]
 
+
+def get_ribbon_tables(ManifoldTable):
+    class RibbonLinks(ManifoldTable):
+        """
+        The database of ribbon links from Section 2.5 of [Dunfield and
+        Gong, 2025].  Each link includes a certificate describing the
+        ribbon disks:
+
+        >>> len(RibbonLinks(cusps=2))
+        12143
+        >>> M = RibbonLinks[1000]
+        >>> M.name(), M.num_cusps(), M.volume()  # doctest: +NUMERIC6
+        ('ribbon_2_16_3079d007', 2, 22.9002274714046)
+
+        The bands used show each link is ribbon are included.  For this link,
+        we used 3 bands:
+
+        >>> N = RibbonLinks['ribbon_2_23_f9c7aff2']
+        >>> N.ribbon_cert[1::2]
+        ['0d1c54_1_0', '5e5709_1_0', '144f625e5d29_5_2']
+        """
+
+        _regex = re.compile(r'ribbon_\d_\d+_[0-9a-f]{8}$')
+        _select = 'select name, triangulation, ribbon_cert from %s '
+
+        def __init__(self, **kwargs):
+            return ManifoldTable.__init__(self,
+                                         table='ribbon_links_view',
+                                         db_path=ribbon_database_path,
+                                         **kwargs)
+
+        def _finalize(self, M, row):
+            M.set_name(row[0])
+            cert = eval(row[2])
+            M._set_PDcode(cert[0])
+            M.ribbon_cert = cert
+
+        def _configure(self, **kwargs):
+            """
+            Process the ManifoldTable filter arguments and then add
+            the ones which are specific to links.
+            """
+            ManifoldTable._configure(self, **kwargs)
+            conditions = []
+
+            alt = kwargs.get('alternating', None)
+            if alt == True:
+                conditions.append("name like '%a%'")
+            elif alt == False:
+                conditions.append("name like '%n%'")
+            flavor = kwargs.get('knots_vs_links', None)
+            if flavor == 'knots':
+                conditions.append('cusps=1')
+            elif flavor == 'links':
+                conditions.append('cusps>1')
+            if 'crossings' in kwargs:
+                N = int(kwargs['crossings'])
+                conditions.append(
+                    "(name like '_%da%%' or name like '_%dn%%')"%(N,N))
+            if self._filter:
+                if len(conditions) > 0:
+                    self._filter += (' and ' + ' and '.join(conditions))
+            else:
+                self._filter = ' and '.join(conditions)
+
+    return [RibbonLinks()]
+
+
 def get_tables(ManifoldTable):
     """
     This function is meant to be called in the __init__.py module in
@@ -718,8 +788,9 @@ def get_tables(ManifoldTable):
     manifolds.sqlite and more_manifolds.sqlite in manifolds_src, and
     returns them all as a list.
     """
-    return get_core_tables(ManifoldTable) + get_platonic_tables(ManifoldTable)
-
+    return (get_core_tables(ManifoldTable) +
+            get_platonic_tables(ManifoldTable) +
+            get_ribbon_tables(ManifoldTable))
 
 
 def connect_to_db(db_path):
@@ -740,7 +811,7 @@ def connect_to_db(db_path):
 
 def get_DT_tables():
     """
-    Returns two barebones databases for looking up DT codes by name. 
+    Returns two barebones databases for looking up DT codes by name.
     """
     class DTCodeTable(object):
         """
@@ -750,7 +821,7 @@ def get_DT_tables():
             self._table = table
             self._select = 'select DT from {}'.format(table)
             self.name = name
-            
+
             self._connection = connect_to_db(db_path)
             self._cursor = self._connection.cursor()
 

@@ -1,6 +1,6 @@
 [build-system]
 requires = [
-    "setuptools>=77",
+    "setuptools>=59",
 ]
 build-backend = "setuptools.build_meta"
 
@@ -14,10 +14,11 @@ authors = [
     {name = "Malik Obeidin" }
 ]
 readme = "README.rst"
-license = "GPL-2.0-or-later"
+license = {text = "GPLv2+"}
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)",
     "Operating System :: OS Independent",
     "Programming Language :: C",
     "Programming Language :: Cython",

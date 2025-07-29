@@ -715,9 +715,9 @@ def get_platonic_tables(ManifoldTable):
 def get_ribbon_tables(ManifoldTable):
     class RibbonLinks(ManifoldTable):
         """
-        The database of ribbon links from Section 2.5 of [Dunfield and
-        Gong, 2025].  Each link includes a certificate describing the
-        ribbon disks:
+        The database of ribbon links from Section 2.5 of `[Dunfield
+        and Gong] <https://arXiv.org/abs/FILLIN>`_.  Each link
+        includes a certificate describing the ribbon disks:
 
         >>> len(RibbonLinks(cusps=2))
         12143

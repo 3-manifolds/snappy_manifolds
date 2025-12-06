@@ -1,4 +1,4 @@
-import sys, sqlite3, re, os, random
+import sys, sqlite3, re, os, random, ast
 
 # This module uses sqlite3 databases with multiple tables.
 # The path to the database file is specified at the module level.
@@ -65,12 +65,18 @@ def get_core_tables(ManifoldTable):
         5^2_1(0,0)(0,0)
         """
 
-        _regex = re.compile(r'([msvt])([0-9]+)$|o9_\d\d\d\d\d$')
+        _regex = re.compile(r'([msvt])([0-9]+)$|o9_\d\d\d\d\d$|o10_\d\d\d\d\d\d$')
+
+        _select = 'select name, triangulation, isometryclass from %s '
 
         def __init__(self, **kwargs):
            return ManifoldTable.__init__(self, table='orientable_cusped_view',
                                                db_path = database_path,
                                                **kwargs)
+        
+        def _finalize(self, M, row):
+            M.set_name(row[0])
+            M.isometry_class = ast.literal_eval(row[2])
 
     class NonorientableCuspedCensus(ManifoldTable):
         """

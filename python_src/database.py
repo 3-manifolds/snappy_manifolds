@@ -45,9 +45,9 @@ def get_core_tables(ManifoldTable):
         m010(0,0) 2.66674478
         >>> for M in OrientableCuspedCensus[-9:-6]: print(M, M.volume()) # doctest: +NUMERIC6
         ...
-        o9_44241(0,0) 8.96323909
-        o9_44242(0,0) 8.96736842
-        o9_44243(0,0) 8.96736842
+        o10_150721(0,0)(0,0)(0,0) 10.1494160640965
+        o10_150722(0,0)(0,0)(0,0) 10.1494160640965
+        o10_150723(0,0)(0,0) 10.1494160640965
         >>> for M in OrientableCuspedCensus[4.10:4.11]: print(M, M.volume()) # doctest: +NUMERIC6
         ...
         m217(0,0) 4.10795310
@@ -67,16 +67,10 @@ def get_core_tables(ManifoldTable):
 
         _regex = re.compile(r'([msvt])([0-9]+)$|o9_\d\d\d\d\d$|o10_\d\d\d\d\d\d$')
 
-        _select = 'select name, triangulation, isometryclass from %s '
-
         def __init__(self, **kwargs):
            return ManifoldTable.__init__(self, table='orientable_cusped_view',
                                                db_path = database_path,
                                                **kwargs)
-        
-        def _finalize(self, M, row):
-            M.set_name(row[0])
-            M.isometry_class = ast.literal_eval(row[2])
 
     class NonorientableCuspedCensus(ManifoldTable):
         """
@@ -279,9 +273,9 @@ def get_core_tables(ManifoldTable):
         K5_3(0,0) 3.48666015 9_2(0,0)
 
         >>> len(CensusKnots)
-        1267
+        3116
         >>> CensusKnots[-1].num_tetrahedra()
-        9
+        10
         """
 
         _regex = re.compile(r'[kK]([0-9]+)_([0-9]+)$')

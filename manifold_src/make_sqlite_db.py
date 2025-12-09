@@ -35,7 +35,6 @@ schema_types = {
     'hyperbolic':'int',
     'ribbon_cert':'text',
     'isom_sig':'text',
-    'isometryclass': 'text',
 }
 
 

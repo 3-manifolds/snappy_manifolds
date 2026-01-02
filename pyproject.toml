@@ -11,7 +11,8 @@ authors = [
     {name = "Marc Culler", email = "snappy-help@computop.org"},
     {name = "Nathan M. Dunfield", email = "snappy-help@computop.org"},
     {name = "Matthias Goerner", email = "snappy-help@computop.org"},
-    {name = "Malik Obeidin" }
+    {name = "Malik Obeidin"},
+    {name = "Shana Yunsheng Li"},
 ]
 readme = "README.rst"
 license = {text = "GPLv2+"}

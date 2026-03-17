@@ -276,9 +276,9 @@ def get_core_tables(ManifoldTable):
         K5_3(0,0) 3.48666015 9_2(0,0)
 
         >>> len(CensusKnots)
-        3116
+        7789
         >>> CensusKnots[-1].num_tetrahedra()
-        10
+        11
         """
 
         _regex = re.compile(r'[kK]([0-9]+)_([0-9]+)$')
